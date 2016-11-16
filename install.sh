@@ -32,6 +32,9 @@ ISC_DEFAULTS=/etc/default/isc-dhcp-server
 # NFS configuration file
 NFS_TABLE=/etc/exports
 
+# Dry-run if true
+SKIP=FALSE
+
 # Used to check if a configuration file is touched by this script
 FIRM=ltsp-tools
 
