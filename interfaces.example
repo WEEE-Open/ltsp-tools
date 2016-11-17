@@ -1,0 +1,11 @@
+####################################
+# Example of /etc/network/interfaces
+####################################
+
+allow-hotplug eth0
+
+iface eth0 inet static
+	address 192.168.69.1
+	netmask 255.255.255.0
+
+	# gateway 10.20.30.40

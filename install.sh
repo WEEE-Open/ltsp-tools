@@ -132,5 +132,8 @@ echo "	2. Once created, remember to keep it active *before* running the 'start' 
 echo "	   Note: With Network Manager: 'nmcli connection up my-lan-connection-name'"
 echo "	   Note: Have you something phisically connected to your existing specified interface before running the next command?"
 echo
+echo "	1. ...Or you can create a static one using /etc/network/interfaces and the default file in this folder."
+echo "	2. ...That will be enabled when your interface is hotplugged."
+echo
 echo "	3. Run:"
 echo "	   ./start.sh"
