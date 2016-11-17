@@ -87,13 +87,16 @@ if ! grep --quiet "$FIRM" -- "$LTSP_ISC_DEFAULT"; then
 fi
 
 echo "Configuring $ISC_DEFAULTS..."
-sleep 1
-echo -n "Now you have to set the DHCP interface (e.g: INTERFACES=\"eth0\")"
-for i in 4 3 2 1; do
-	echo -n "$1."
+. "$ISC_DEFAULTS"
+if [ -z $INTERFACES ]; then
 	sleep 1
-done
-editor "$ISC_DEFAULTS"
+	echo -n "Now you have to set the DHCP interface (e.g: INTERFACES=\"eth0\")"
+	for i in 4 3 2 1; do
+		echo -n "$1."
+		sleep 1
+	done
+	editor "$ISC_DEFAULTS"
+fi
 
 #
 # Appending the default LTSP dhcp configuration to isc-dhcp-server
@@ -119,6 +122,15 @@ if ! grep --quiet "$FIRM" -- "$NFS_TABLE"; then
 	echo "/opt/ltsp *(ro,no_root_squash,async,no_subtree_check)"  >> "$NFS_TABLE"
 fi
 
-echo "Probably done."
-echo "Now run:"
-echo "	./start.sh"
+sleep 1
+echo
+echo "Now:"
+echo "	1. Please create a static LAN connection with same values as $LTSP_ISC_DEFAULT ($INTERFACES)..."
+echo "	   Note: You can use Network Manager directly to create it!"
+echo
+echo "	2. Once created, remember to keep it active *before* running the 'start' script"
+echo "	   Note: With Network Manager: 'nmcli connection up my-lan-connection-name'"
+echo "	   Note: Have you something phisically connected to your existing specified interface before running the next command?"
+echo
+echo "	3. Run:"
+echo "	   ./start.sh"
