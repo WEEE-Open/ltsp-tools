@@ -1,0 +1,27 @@
+# Allow network booting
+allow booting;
+allow bootp;
+
+# Want to be the only DHCP server in this network
+authoritative;
+
+subnet $LAN_DHCP_NETWORK netmask $LAN_DHCP_NETMASK {
+
+	# Optional WAN DNS servers
+	option domain-name-servers $WAN_DNS_SERVER0, $WAN_DNS_SERVER1;
+
+	# DHCP LAN range
+	range $LAN_DHCP_START $LAN_DHCP_END;
+
+	option subnet-mask $LAN_DHCP_NETMASK;
+	option broadcast-address $LAN_DHCP_BROADCAST;
+
+	# Client's gateway (my IP)
+	option routers $LAN_DHCP_SERVER_ADDR;
+
+	# Who has the boot file (my IP) (TFTP)
+	next-server $LAN_DHCP_SERVER_ADDR;
+
+	# Boot file is in /srv/tftp
+	filename "pxelinux.0";
+}

@@ -1,0 +1,12 @@
+# Enable this interface when plugged
+allow-hotplug $LAN_DHCP_INTERFACE
+
+# Interface configuration
+iface $LAN_DHCP_INTERFACE inet static
+
+	# My address in the LAN (I'm the DHCP server)
+	address $LAN_DHCP_SERVER_ADDR
+	netmask $LAN_DHCP_NETMASK
+
+	# Default WAN network gateway
+	gateway $WAN_GATEWAY_ADDR

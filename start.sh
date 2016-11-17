@@ -17,28 +17,13 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #############################################################################
 
-ISC_DEFAULTS=/etc/default/isc-dhcp-server
+. ./commons.sh $0 $@ || {
+	echo "Please execute in the same folder."
+	exit 3
+}
 
-if [ -z $2 ]; then
-	echo "Usage:"
-	echo "	$0 LAN_DHCP_INTERFACE GATEWAY_INTERFACE"
-	echo "Example:"
-	echo "	$0 eth0 wlan0"
-
-	. "$ISC_DEFAULTS"
-
-	if [ -z $INTERFACES ]; then
-		echo "Have you specified an interface in $ISC_DEFAULTS?"
-		exit 1
-	fi
-
-	echo
-	echo "Note that your LAN DHCP interface is: '$INTERFACES' ($ISC_DEFAULTS)"
-	exit 0
-fi
-
-LAN=$1
-GATEWAY=$2
+LAN=$LAN_DHCP_INTERFACE
+GATEWAY=$WAN_GATEWAY_INTERFACE
 
 service tftpd-hpa         restart && \
 service isc-dhcp-server   restart && \
