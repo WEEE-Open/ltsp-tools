@@ -45,7 +45,7 @@ TEMPLATES_DIR=./templates
 FORCE=false
 
 # Skip certain long things
-SKIP=true
+SKIP=false
 
 while [ -n "$2" ]; do
 	case "$2" in
@@ -135,7 +135,8 @@ mkdir -p "$CONFIGS_DIR"
 # Create default global configuration file if it doesn't exists
 if $FORCE || [ ! -f "$CONFIGS_DIR/config.conf" ]; then
 	# Take default global configuration file from templates
-	cp -a "$TEMPLATES_DIR/config-example.conf" "$CONFIGS_DIR/config.conf"
+	cat "$TEMPLATES_DIR/edit-and-save.txt"    > "$CONFIGS_DIR/config.conf"
+	cat "$TEMPLATES_DIR/config-example.conf" >> "$CONFIGS_DIR/config.conf"
 
 	# Edit global configuration file
 	editor "$CONFIGS_DIR/config.conf"

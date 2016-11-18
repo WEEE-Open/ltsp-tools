@@ -26,7 +26,7 @@ $SKIP || apt-get update
 
 # dep: isc-dhcpd-server
 # gettext gives envsubst
-$SKIP || apt-get install ltsp-server-standalone gettext
+$SKIP || apt-get install -y ltsp-server-standalone gettext
 
 # Will add also Debian security repository
 $SKIP || ltsp-build-client
