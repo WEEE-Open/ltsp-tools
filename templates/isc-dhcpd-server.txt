@@ -23,5 +23,5 @@ subnet $LAN_DHCP_NETWORK netmask $LAN_DHCP_NETMASK {
 	next-server $LAN_DHCP_SERVER_ADDR;
 
 	# Boot file is in /srv/tftp
-	filename "/ltsp/i386/pxelinux.0";
+	filename "/ltsp/$LTSP_ARCH/pxelinux.0";
 }
