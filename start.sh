@@ -25,9 +25,13 @@
 LAN=$LAN_DHCP_INTERFACE
 GATEWAY=$WAN_GATEWAY_INTERFACE
 
+service networking        restart && \
 service tftpd-hpa         restart && \
 service isc-dhcp-server   restart && \
-service nfs-kernel-server restart || exit 1
+service nfs-kernel-server restart || {
+	echo "Not all services are OK!"
+	exit 1
+}
 
 iptables --flush
 iptables --table nat    --flush
@@ -54,3 +58,5 @@ iptables -A FORWARD -i $GATEWAY -o $LAN -j REJECT
 
 # Enable routing.
 echo 1 > /proc/sys/net/ipv4/ip_forward
+
+echo "Probably ready."

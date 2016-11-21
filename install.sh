@@ -95,6 +95,5 @@ if $FORCE || ! grep --quiet "$FIRM" -- "$LTSP_ISC_DEFAULT"; then
 	editor                                              "$LTSP_ISC_DEFAULT"
 fi
 
-echo "Probably OK!"
-echo "Now:"
-echo "	./start.sh"
+echo "Running ./start.sh..."
+./start.sh
