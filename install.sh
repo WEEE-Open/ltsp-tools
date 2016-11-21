@@ -29,7 +29,7 @@ $SKIP || apt-get update
 $SKIP || apt-get install -y ltsp-server-standalone gettext
 
 # Will add also Debian security repository
-$SKIP || ltsp-build-client
+$SKIP || ltsp-build-client --arch "$LTSP_ARCH"
 
 #
 # Adding LTSP stuff into the NFS table

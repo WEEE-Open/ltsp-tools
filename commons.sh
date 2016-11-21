@@ -149,6 +149,7 @@ fi
 # Check that these vars are set
 #
 require_vars \
+	LTSP_ARCH \
 	LAN_DHCP_INTERFACE \
 	LAN_DHCP_SERVER_ADDR \
 	LAN_DHCP_START \
